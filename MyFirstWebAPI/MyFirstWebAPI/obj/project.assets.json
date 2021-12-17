@@ -5947,11 +5947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WebAPI\\MyFirstWebAPI\\MyFirstWebAPI\\MyFirstWebAPI.csproj",
+      "projectUniqueName": "D:\\WebAPI\\DucTV\\MyFirstWebAPI\\MyFirstWebAPI\\MyFirstWebAPI.csproj",
       "projectName": "MyFirstWebAPI",
-      "projectPath": "D:\\WebAPI\\MyFirstWebAPI\\MyFirstWebAPI\\MyFirstWebAPI.csproj",
+      "projectPath": "D:\\WebAPI\\DucTV\\MyFirstWebAPI\\MyFirstWebAPI\\MyFirstWebAPI.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\WebAPI\\MyFirstWebAPI\\MyFirstWebAPI\\obj\\",
+      "outputPath": "D:\\WebAPI\\DucTV\\MyFirstWebAPI\\MyFirstWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

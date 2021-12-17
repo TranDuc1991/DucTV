@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = MyFirstWebAPI
-build_property.ProjectDir = D:\WebAPI\MyFirstWebAPI\MyFirstWebAPI\
+build_property.ProjectDir = D:\WebAPI\DucTV\MyFirstWebAPI\MyFirstWebAPI\

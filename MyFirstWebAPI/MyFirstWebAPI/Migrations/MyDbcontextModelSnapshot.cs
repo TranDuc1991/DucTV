@@ -19,6 +19,63 @@ namespace MyFirstWebAPI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MyFirstWebAPI.Data.DonHang", b =>
+                {
+                    b.Property<Guid>("MaDh")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DiaChiGiao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NgayDat")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<DateTime?>("NgayGiao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NguoiNhan")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SoDienThoai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TinhTrangDonHang")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaDh");
+
+                    b.ToTable("DonHang");
+                });
+
+            modelBuilder.Entity("MyFirstWebAPI.Data.DonHangChiTiet", b =>
+                {
+                    b.Property<Guid>("MaDh")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MaHh")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("DonGia")
+                        .HasColumnType("float");
+
+                    b.Property<byte>("GiamGia")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaDh", "MaHh");
+
+                    b.HasIndex("MaHh");
+
+                    b.ToTable("ChiTietDonHang");
+                });
+
             modelBuilder.Entity("MyFirstWebAPI.Data.HangHoa", b =>
                 {
                     b.Property<Guid>("MaHh")
@@ -39,8 +96,8 @@ namespace MyFirstWebAPI.Migrations
 
                     b.Property<string>("TenHh")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("MaHh");
 
@@ -66,6 +123,27 @@ namespace MyFirstWebAPI.Migrations
                     b.ToTable("Loai");
                 });
 
+            modelBuilder.Entity("MyFirstWebAPI.Data.DonHangChiTiet", b =>
+                {
+                    b.HasOne("MyFirstWebAPI.Data.DonHang", "DonHang")
+                        .WithMany("DonHangChiTiets")
+                        .HasForeignKey("MaDh")
+                        .HasConstraintName("FK_DonHangCT_DonHang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFirstWebAPI.Data.HangHoa", "HangHoa")
+                        .WithMany("DonHangChiTiets")
+                        .HasForeignKey("MaHh")
+                        .HasConstraintName("FK_DonHangCT_HangHoa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DonHang");
+
+                    b.Navigation("HangHoa");
+                });
+
             modelBuilder.Entity("MyFirstWebAPI.Data.HangHoa", b =>
                 {
                     b.HasOne("MyFirstWebAPI.Data.Loai", "Loai")
@@ -73,6 +151,16 @@ namespace MyFirstWebAPI.Migrations
                         .HasForeignKey("MaLoai");
 
                     b.Navigation("Loai");
+                });
+
+            modelBuilder.Entity("MyFirstWebAPI.Data.DonHang", b =>
+                {
+                    b.Navigation("DonHangChiTiets");
+                });
+
+            modelBuilder.Entity("MyFirstWebAPI.Data.HangHoa", b =>
+                {
+                    b.Navigation("DonHangChiTiets");
                 });
 
             modelBuilder.Entity("MyFirstWebAPI.Data.Loai", b =>
